@@ -34,7 +34,8 @@
           "speed": {
             "type": "integer"
           }
-        }
+        },
+        "required" : ["speed"]
       },
       "minItems": 1
     }
