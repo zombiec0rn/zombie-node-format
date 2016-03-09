@@ -1,26 +1,26 @@
-# Zombie Service Format
+# Zombie Node Format
 
-Zombie Service Format (zsf) is the configuration format for [zombie services]().
+Zombie Node Format (znf) is the configuration format for [zombie nodes]().
 
-The format describes services and their properties. The main purpose of this module is to provide tools and a validation schema for working with zombie services. It includes a JSON schema validator for the format. 
+The format describes nodes and their properties. The main purpose of this module is to provide tools and a validation schema for working with zombie nodes. It includes a JSON schema validator for the format. 
 
 The format is extensible so other modules can expand it's capabilities and semantics.
 
 ## Install
 
 ```sh
-npm install --save @zombiec0rn/zombie-service-format
+npm install --save @zombiec0rn/zombie-node-format
 ```
 
 ## Use
 
 ```js
-var zsf = require('@zombiec0rn/zombie-service-format')
+var znf = require('@zombiec0rn/zombie-node-format')
 
 try {
-  zsf.validate(services)
+  znf.validate(nodes)
 } catch(e) {
-  console.log(e instanceof zsf.exception, e.trace)
+  console.log(e instanceof znf.exception, e.trace)
 }
 ```
 
@@ -28,63 +28,66 @@ try {
 
 #### `validate(services)`
 
-The main usecase for this module is to validate service configs. See usage example [above](#use). 
+The main usecase for this module is to validate node configs. See usage example [above](#use). 
 
 #### `random(num, opts)`
 
-Generate random service configs. Useful for testing etc.
+Generate random node configs. Useful for testing etc.
 
 ```js
-var zsf = require('@zombiec0rn/zombie-service-format')
-var services = zsf.random(5, { host: { hostname: 'yolo' }})
+var znf = require('@zombiec0rn/zombie-node-format')
+var services = znf.random(5, { swarm: 'anklebiters' })
 ```
 
 #### `schema`
 
-The zsf json schema.
+The znf json schema.
 
 #### `exception`
 
-The zsf exception throws if bad config.
+The znf exception throws if bad config.
 
 ## Format
 
+```json
+{
+  "hostname" : "anklebiters-gateway",
+  "swarm"    : "anklebiters",
+  "engines"  : ["docker:4243"],
+  "tags"     : ["google","gateway"],
+  "memory": 1779699712,
+  "cpus": [
     {
-        "id"      : "app",                 // Service id
-        "image"   : "megacorp/webapp",     // Image path
-        "cmd"     : "python server.py",    // Command to run        (optional)
-        "ports"   : ["80:80","53:53/udp"], // List of port mappings (optional)
-        "env"     : ["FOO=BAR"],           // Environment variables (optional)
-        "volumes" : ["/tmp:/tmp"],         // Service volumes       (optional)
+      "model": "Intel(R) Xeon(R) CPU @ 2.60GHz",
+      "speed": 2600
     }
+  ]
+}
+```
 
-### Id
+### `hostname`
 
-The id, **app** in the example, is the service identifier. It can be any arbitrary string. No spaces.
+The node `hostname`. Considered a unique identifier of te node.
 
-### Image
+### `swarm`
 
-The image, **megacorp/webapp** in the example, is URI to the service image. It can be any valid URI, relative or full.
+A swarm is a collection of nodes. A node can be part of a single swarm only.
 
-### Cmd
+### `engines` 
 
-The cmd, **python server.py** in the example, is the command to execute when running the service. It can be an arbitrary string.
+Engines is a list of supported service drivers on the node. 
 
-### Ports
+### `tags` 
 
-The ports, **["80:80"]** in the example, is a list of port mappings. A port mapping is defined using a string with two ports separated by a colon: **"host-port:service-port"** where ***host-port*** references a port on the host running the service, and the ***service-port*** references a port inside the running service. Zsf also support specifying the protocol; **["53:53/udp"]**. The two supported protocols are *tcp* and *udp*. 
+A list of tags.
 
-### Env
+### `memory`
 
-The env, **["FOO=BAR"]** in the example, is a list of environment variables. An evironment variable is defined using a string with a key and a value separated by a equals sign: **"key=value"**.
+The memory capacity of the node.
 
-### Volumes
+### `cpus` 
 
-The volumes, **["/tmp:/tmp"]** in the example, is a list of volumes to mount inside the service. There are two different ways to specify a volume:
-
-    "/host/path:/service/path"  // Mounts a specified path on the host to the specified path in the service
-    "/host/path"                // Mounts a specified path on the host to the same path in the service
-
+The cpu capacity of the node. A list of cpus.
 
 ## Changelog
 
