@@ -1,33 +1,32 @@
 {
-  "name": "@zombiec0rn/zombie-service-format",
+  "name": "@zombiec0rn/zombie-node-format",
   "version": "1.0.0",
-  "description": "Zombie Service Format",
+  "description": "Zombie Node Format",
   "main": "index.js",
   "scripts": {
     "test": "mocha -w -R nyan --check-leaks"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/zombiec0rn/zombie-service-format.git"
+    "url": "https://github.com/zombiec0rn/zombie-node-format.git"
   },
   "keywords": [
-    "container",
     "json",
     "format",
-    "docker",
     "zombie"
   ],
   "author": "Asbjorn Enge <asbjorn@hanafjedle.net>",
   "license": "BSD",
   "bugs": {
-    "url": "https://github.com/zombiec0rn/zombie-service-format/issues"
+    "url": "https://github.com/zombiec0rn/zombie-node-format/issues"
   },
-  "homepage": "https://github.com/zombiec0rn/zombie-service-format",
+  "homepage": "https://github.com/zombiec0rn/zombie-node-format",
   "dependencies": {
     "jjv": "^1.0.2",
     "random-string": "^0.1.2",
     "random-number": "^0.0.7",
     "object.assign": "^4.0.3",
-    "clone": "^1.0.2"
+    "clone": "^1.0.2",
+    "bytes": "^2.3.0"
   }
 }

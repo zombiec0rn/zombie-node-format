@@ -3,7 +3,7 @@ var assign = require('object.assign')
 var utils = require('./utils')
 var schema = require('./schema.json')
 
-var ZNSException = function(message, trace) {
+var ZNFException = function(message, trace) {
 	this.message  = message
 	this.trace    = trace
 	this.toString = function() {

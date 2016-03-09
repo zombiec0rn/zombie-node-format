@@ -1,5 +1,6 @@
 var randomString = require('random-string')
 var randomNumber = require('random-number')
+var bytes        = require('bytes')
 
 var tags = [
   'google',
@@ -45,13 +46,14 @@ function randomInt(min, max) {
   })
 }
 
-function randomFromArray(arr) {
-  return arr[Math.floor(Math.random() * arr.length)]
+function randomFromArray(arr, process) {
+  process = process || function(i) { return i }
+  return process(arr[Math.floor(Math.random() * arr.length)])
 }
 
-function randomsFromArray(arr, num) {
+function randomsFromArray(arr, num, process) {
   return Array.apply(null, { length: num }).map(function() {
-    return randomFromArray(arr)
+    return randomFromArray(arr, process)
   })
 }
 
@@ -63,7 +65,7 @@ function randomExampleNode(opts) {
     'swarm'    : randomString(),
     'engines'  : randomFromArray(engines),
     'tags'     : randomsFromArray(tags, randomInt(1,3)),
-    'memory'   : randomFromArray(memory),
+    'memory'   : randomFromArray(memory, bytes),
     'cpus'     : randomsFromArray(cpus, randomInt(1,3))
   }
 }
