@@ -2,13 +2,15 @@ var assert   = require('assert')
 var clone    = require('clone')
 var znf      = require('../index')
 
-var config   = znf.random(1) 
-var multiple = znf.random(2) 
-
 describe('Zombie Node Format', function() {
 
-	it('can validate a valid javascript object', function() {
-		assert(znf.validate(config) == config)
+	it.only('can validate a valid a single object', function() {
+    var config = znf.random(1)[0]
+    try {
+		  assert(znf.validate(config) == config)
+    } catch(e) {
+      console.log(JSON.stringify(e.trace))
+    }
 	})
 
 	it('can validate a valid json string', function() {
@@ -121,7 +123,7 @@ describe('Zombie Node Format', function() {
 		try { znf.validate(_multiple) } catch(e) { assert(e instanceof znf.exception) }
 	})
 
-  it.only('can generate random test nodes', function() {
+  it('can generate random test nodes', function() {
     var nodes = znf.random(5, { swarm: 'anklebiters' })
     assert(nodes instanceof Array)
     assert(nodes.length == 5)

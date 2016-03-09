@@ -27,14 +27,7 @@ var memory = [
 var cpus = [
   {
     'model': 'Intel(R) Xeon(R) CPU @ 2.60GHz',
-    'speed': 2600,
-    'times': {
-      'user': 7613600,
-      'nice': 1410200,
-      'sys': 2855600,
-      'idle': 11142897700,
-      'irq': 100
-    }
+    'speed': 2600
   }
 ]
 
@@ -63,7 +56,7 @@ function randomExampleNode(opts) {
   return {
     'hostname' : randomString(),
     'swarm'    : randomString(),
-    'engines'  : randomFromArray(engines),
+    'engines'  : [randomFromArray(engines)],
     'tags'     : randomsFromArray(tags, randomInt(1,3)),
     'memory'   : randomFromArray(memory, bytes),
     'cpus'     : randomsFromArray(cpus, randomInt(1,3))

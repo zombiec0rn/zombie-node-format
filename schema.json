@@ -1,45 +1,43 @@
 {
-	"title" : "Zombie Service Format",
+	"title" : "Zombie Node Format",
 	"type"  : "object",
 	"properties" : {
-		"id" : {
+		"hostname" : {
 			"type"    : "string",
 			"pattern" : "^/?[a-zA-Z0-9_-]+$"
 		},
-		"image" : {
-			"type" : "string"
+		"swarm" : {
+			"type"    : "string",
+			"pattern" : "^/?[a-zA-Z0-9_-]+$"
 		},
-		"cmd" : {
-			"type" : "string"
-		},
-		"ports" : {
+		"engines" : {
 			"type"  : "array",
 			"items" : {
 				"type"    : "string",
-				"pattern" : "^\\d+:\\d+(\\/(tcp|udp))?$"
+				"pattern" : "^\\w+:\\d+$"
 			}
 		},
-		"env" : {
+		"tags" : {
 			"type"  : "array",
 			"items" : {
-				"type"    : "string",
-				"pattern" : "^\\w+=.*$"
+				"type"    : "string"
 			}
 		},
-		"volumes" : {
-			"type"  : "array",
-			"items" : {
-				"type"    : "string",
-				"pattern" : "[^\\0]+:(/[^/]+)+$"
-			}
-		},
-		"expose" : {
-			"type"  : "array",
-			"items" : {
-				"type"    : "string",
-				"pattern" : "^\\d+$"
-			}
-		}
+    "memory": {
+      "type": "integer"
+    },
+    "cpus": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "speed": {
+            "type": "integer"
+          }
+        }
+      },
+      "minItems": 1
+    }
 	},
-	"required" : ["id", "image"]
+	"required" : ["hostname", "memory", "cpus"]
 }
