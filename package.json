@@ -11,9 +11,9 @@
     "url": "https://github.com/zombiec0rn/zombie-node-format.git"
   },
   "keywords": [
-    "json",
-    "format",
-    "zombie"
+    "zombie-format",
+    "zombie-node",
+    "zombiec0rn"
   ],
   "author": "Asbjorn Enge <asbjorn@hanafjedle.net>",
   "license": "BSD",
