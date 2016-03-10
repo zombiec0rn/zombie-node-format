@@ -1,6 +1,6 @@
 {
   "name": "@zombiec0rn/zombie-node-format",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Zombie Node Format",
   "main": "index.js",
   "scripts": {
